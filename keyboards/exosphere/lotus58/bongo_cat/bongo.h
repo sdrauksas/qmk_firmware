@@ -214,10 +214,18 @@ static void draw_bongo(bool mac)
         // Print OS
         oled_set_cursor(0, 0);
         if (mac) {
-            oled_write_P(PSTR("mac"), 0);
+            oled_write_char(0x95, 0);
+            oled_write_char(0x96, 0);
+            oled_set_cursor(0, 1);
+            oled_write_char(0xB5, 0);
+            oled_write_char(0xB6, 0);
         }
         else {
-            oled_write_P(PSTR("win"), 0);
+            oled_write_char(0x97, 0);
+            oled_write_char(0x98, 0);
+            oled_set_cursor(0, 1);
+            oled_write_char(0xB7, 0);
+            oled_write_char(0xB8, 0);
         }
         // Print layer
         oled_set_cursor(0, 2);
