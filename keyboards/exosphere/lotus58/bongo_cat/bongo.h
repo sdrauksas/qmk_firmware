@@ -172,7 +172,7 @@ void eval_anim_state(void)
     }
 }
 
-static void draw_bongo(void)
+static void draw_bongo(bool mac)
 {
     eval_anim_state();
 
@@ -211,8 +211,16 @@ static void draw_bongo(void)
     }
 
     if (is_oled_on()) {
-        // Print layer
+        // Print OS
         oled_set_cursor(0, 0);
+        if (mac) {
+            oled_write_P(PSTR("mac"), 0);
+        }
+        else {
+            oled_write_P(PSTR("win"), 0);
+        }
+        // Print layer
+        oled_set_cursor(0, 2);
         switch (get_highest_layer(layer_state)) {
             case 0:
                 oled_write_P(PSTR("L0"), false);
@@ -230,7 +238,7 @@ static void draw_bongo(void)
                 oled_write_P(PSTR("UND"), false);
         }
         // Print CapsLock state
-        oled_set_cursor(0, 2);
+        oled_set_cursor(0, 3);
         led_t led_usb_state = host_keyboard_led_state();
         if (led_usb_state.caps_lock) {
             oled_write_P(PSTR("!!"), 0);

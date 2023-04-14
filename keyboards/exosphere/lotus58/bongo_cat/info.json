@@ -147,7 +147,5 @@
             "polling_interval": 10,
             "timeout": 2000
         }
-    },
-    
-    
+    }
 }
