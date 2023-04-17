@@ -6,14 +6,42 @@
 enum layers {
     _QWERTY,
     _GAME,
-    _SYM,
+    _SYM
 };
 
 enum custom_keycodes {
-    KC_QWERTY = SAFE_RANGE,
-    KC_NUMERIC,
-    KC_FUNCTION,
-	KC_SYSTEM,
+    PR_SCR = SAFE_RANGE,
+    CH_LANG
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+    case PR_SCR:
+        if (record->event.pressed) {
+            // when keycode PR_SCR is pressed
+            // snip a part of the screen
+            SEND_STRING(SS_TAP(X_PSCR));
+        } else {
+            // when keycode PR_SCR is released
+        }
+        break;
+    case CH_LANG:
+        if (record->event.pressed) {
+            // when keycode CH_LANG is pressed
+            // change language layout
+            SEND_STRING(SS_DOWN(X_LGUI) SS_DELAY(10) SS_TAP(X_SPC) SS_DELAY(10) SS_UP(X_LGUI));
+        } else {
+            // when keycode CH_LANG is released
+        }
+        break;
+    case LCTL_T(G(KC_SPACE)):
+        if (record->tap.count && record->event.pressed) {
+            tap_code16(G(KC_SPACE)); // Intercept tap function to send Cmd+Space
+            return false;
+        }
+        break;
+    }
+    return true;
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -37,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       _______, 	 KC_F2,	    KC_F3,     KC_F4,	  KC_F5,     KC_F6,  	KC_MPLY,       KC_NO,      KC_F7,  	 KC_F8,   	KC_F9,     KC_F10,    KC_F11,    _______,
       _______, 	 KC_F1, 	KC_UP,     KC_GRV,    KC_MINS,   KC_EQL,                   		       KC_LBRC,  KC_RBRC,   KC_QUOT,   KC_MS_U,   KC_F12,    _______,
       _______, 	 KC_LEFT,   KC_DOWN,   KC_RGHT,   S(KC_MINS),S(KC_EQL),                     	   S(KC_LBRC),S(KC_RBRC),KC_MS_L,  KC_MS_D,   KC_MS_R,   _______,
-      _______,   DF(_GAME), KC_NO,     KC_NO,     KC_NO,     G(KC_SPC), KC_MPRV,       KC_MNXT,    KC_PSCR,	 KC_BSLS,   KC_BTN1,   KC_BTN3,   KC_BTN2,   _______,
+      _______,   DF(_GAME), KC_NO,     KC_NO,     KC_NO,     CH_LANG,   KC_MPRV,       KC_MNXT,    PR_SCR,	 KC_BSLS,   KC_BTN1,   KC_BTN3,   KC_BTN2,   _______,
                                        _______,   _______,   _______,   _______,       _______,    _______,  _______,   _______
 ),
 };
