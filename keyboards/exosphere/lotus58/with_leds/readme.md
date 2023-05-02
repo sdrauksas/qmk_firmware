@@ -1,6 +1,6 @@
 # lotus58
 
-*This is firmware for my customised Lotus58 keyboard. It features a bongo cat on the OLED screen that responds to your typing. It also has two keymaps - one for macOS and one for Windows/Linux. I load one keymap to one half, and the other to the other half. This lets me switch between OSes by just plugging the USB to another half of the keyboard.*
+*This is firmware for my customised Lotus58 keyboard. It features 5 RGB LEDs on each side of the keyboard, these LEDs show which layer the keyboard is in. It also has two keymaps - one for macOS and one for Windows/Linux. I load one keymap to one half, and the other to the other half. This lets me switch between OSes by just plugging the USB to another half of the keyboard.*
 
 For the keyboard hardware design and original firmware, please refer to the original developer [Markus Knutsson](https://github.com/TweetyDaBird/).
 
@@ -11,11 +11,11 @@ For the keyboard hardware design and original firmware, please refer to the orig
 
 Make example for this keyboard (after setting up your build environment):
 
-    make exosphere/lotus58/bongo_cat:default
+    make exosphere/lotus58/with_leds:default
 
 Flashing example for this keyboard:
 
-    make exosphere/lotus58/bongo_cat:default:flash
+    make exosphere/lotus58/with_leds:default:flash
 
 See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
 
