@@ -231,16 +231,19 @@ static void draw_bongo(bool mac)
         oled_set_cursor(0, 2);
         switch (get_highest_layer(layer_state | default_layer_state)) {
             case 0:
-                oled_write_P(PSTR("L0"), false);
+                oled_write_P(PSTR("QW"), false);
                 break;
             case 1:
-                oled_write_P(PSTR("L1"), false);
+                oled_write_P(PSTR("GA"), false);
                 break;
             case 2:
-                oled_write_P(PSTR("L2"), false);
+                oled_write_P(PSTR("CO"), false);
                 break;
             case 3:
-                oled_write_P(PSTR("L3"), false);
+                oled_write_P(PSTR("SY"), false);
+                break;
+            case 4:
+                oled_write_P(PSTR("NA"), false);
                 break;
             default:
                 oled_write_P(PSTR("UND"), false);
